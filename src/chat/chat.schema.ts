@@ -12,7 +12,10 @@ export class Chat {
   senderId: string;
 
   @Prop({required: true})
-  reveivers: string[];
+  receivers: string[];
+
+  @Prop({required: true})
+  message: string
 }
 
 export const ChatSchema = SchemaFactory.createForClass(Chat);
