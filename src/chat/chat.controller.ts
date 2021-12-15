@@ -1,6 +1,7 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { ChatService } from './chat.service';
 import { CreateChatDto } from './dto/create-chat.dto';
+import { GetRoomChatsRequestDTO } from './dto/get-room-chats-request.dto';
 import { UpdateChatDto } from './dto/update-chat.dto';
 
 @Controller('chat')
@@ -10,6 +11,11 @@ export class ChatController {
   @Post()
   create(@Body() createChatDto: CreateChatDto) {
     return this.chatService.create(createChatDto);
+  }
+
+  @Post('getRoomChats')
+  getRoomChats(@Body() requestDTO: GetRoomChatsRequestDTO ) {
+    return this.chatService.findChatsByRoom(requestDTO.roomId)
   }
 
   @Get()

@@ -8,11 +8,11 @@ export class Chat {
   @Prop({default: Date.now()})
   timeStamp: number;
 
-  @Prop({required: true})
-  senderId: string;
+  @Prop()
+  roomId: string;
 
   @Prop({required: true})
-  receivers: string[];
+  senderId: string;
 
   @Prop({required: true})
   message: string

@@ -16,7 +16,6 @@ export class ChatService {
     ) {}
 
   async create(createChatDto: CreateChatDto)  {
-    console.log('saving message')
     let response: ResponseDTO = {
       message: 'Could not send message',
       data: null,
@@ -25,7 +24,7 @@ export class ChatService {
     let newMessage = new this.chatModel(createChatDto);
     await newMessage.save()
       .then(() => {
-        this.broadcastChat('newMessage', newMessage)
+        this.chatGateway.alertNewMessage('newMessage',newMessage)
         response.data = newMessage;
         response.message = 'Message saved, awaiting broadcast';
         response.status = 'success';
@@ -40,27 +39,32 @@ export class ChatService {
         }
         return response;
       })
-
   }
 
-  async broadcastChat(listener: string, chat: any) {
-    await this.chatGateway.broadcastNewMessage(listener, chat)
-      .then(() => {
-        let response: ResponseDTO = {
-          message: 'Message Sent',
-          data: chat,
-          status: 'success'
-        }
-        return response
-      })
-      .catch((error) => {
-        let response: ResponseDTO = {
-          message: 'Message could not be Sent',
-          data: error,
-          status: 'fail'
-        }
-        return response
-      })
+  async findChatsByRoom(roomId: string) {
+    let response: ResponseDTO = {
+      message: '',
+      data: undefined,
+      status: 'fail'
+    }
+
+    let roomChats = await this.chatModel.find({roomId: roomId})
+    if (roomChats) {
+      console.log('chat service  ' +roomId)
+      console.log(roomChats)
+      response.message = 'chats have been fetched';
+      response.data = roomChats
+      response.status = 'success';
+      return response;
+    }
+
+    else {
+      console.log(roomChats)
+      response.message = 'No chats available';
+      response.data = roomChats
+      response.status = 'success';
+      return response;
+    }
   }
 
   findAll() {
