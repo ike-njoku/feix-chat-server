@@ -32,11 +32,19 @@ export class RoomService {
 
   }
 
-  async getMyActiveRooms(userName: string) {
-    let activeRooms = await this.roomModel.find({$in: {participants: userName}});
+  async getMyActiveRooms(userName: any) {
+    let activeRooms = await this.roomModel.find({});
     if (activeRooms) {
+      let _rooms: RoomDocument[] = [];
+      activeRooms.forEach((room) => {
+        if (room.participants.includes(userName.userName)) {
+          _rooms.push(room);
+          console.log(room);
+        }
+      })
+      
       let response: ResponseDTO = {
-        data: activeRooms,
+        data: _rooms,
         message: 'Fetched all active rooms',
         status: 'success'
       };
