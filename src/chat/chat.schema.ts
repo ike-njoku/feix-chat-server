@@ -16,6 +16,9 @@ export class Chat {
 
   @Prop({required: true})
   message: string
+
+  @Prop({})
+  senderAvatar: string
 }
 
 export const ChatSchema = SchemaFactory.createForClass(Chat);
