@@ -4,6 +4,7 @@ import { Chat } from 'src/chat/entities/chat.entity';
 import { ResponseDTO } from 'src/response.dto';
 import { Room } from 'src/room/entities/room.entity';
 
+
 @WebSocketGateway({
   cors: ['http://localhost:4200', 'http://localhost:4201',]
 })
