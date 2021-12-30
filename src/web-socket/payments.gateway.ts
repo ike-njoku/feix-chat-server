@@ -25,8 +25,5 @@ export class PaymentsGateway {
       if (emitMessage) console.log('emitted message')
       else console.log('could not do shit')
   }
-
-
-
 }
 
