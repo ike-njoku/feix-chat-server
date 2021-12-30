@@ -1,11 +1,15 @@
 import { Injectable } from '@nestjs/common';
+import { PaymentsGateway } from 'src/web-socket/payments.gateway';
 import { CreatePaymentDto } from './dto/create-payment.dto';
 import { UpdatePaymentDto } from './dto/update-payment.dto';
 
 @Injectable()
 export class PaymentsService {
+  constructor(
+    private paymentGateway: PaymentsGateway
+  ) {}
   create(createPaymentDto: CreatePaymentDto) {
-    return 'This action adds a new payment';
+    return this.paymentGateway.alertNewPayment(createPaymentDto.transactionRef, createPaymentDto)
   }
 
   findAll() {

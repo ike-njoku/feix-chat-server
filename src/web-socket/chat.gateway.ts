@@ -14,7 +14,7 @@ export class ChatGateway {
 
   @SubscribeMessage('newMessage')
   async alertNewMessage(@MessageBody() message: any, chat: ChatDocument) {
-    let response: ResponseDTO =  {
+    let response: ResponseDTO = {
       status: 'fail',
       message: 'Could not broadcast message',
       data: null
@@ -22,7 +22,7 @@ export class ChatGateway {
     let emitMessage = await this.server.emit(chat.roomId, chat)
 
     if (emitMessage) {
-      response =  {
+      response = {
         status: 'success',
         message: 'New Chat',
         data: chat
@@ -30,7 +30,7 @@ export class ChatGateway {
       return response;
     }
     else {
-      response =  {
+      response = {
         status: 'fail',
         message: 'Could not create Room',
         data: null
@@ -41,7 +41,7 @@ export class ChatGateway {
 
   @SubscribeMessage('newRoomCreated')
   async alertNewRoom(@MessageBody() message: any, room: Room) {
-    let response: ResponseDTO =  {
+    let response: ResponseDTO = {
       status: 'fail',
       message: 'Could not broadcast message',
       data: null
@@ -49,7 +49,7 @@ export class ChatGateway {
     let emitMessage = await this.server.emit('newRoomCreated', room)
 
     if (emitMessage) {
-      response =  {
+      response = {
         status: 'success',
         message: 'New Room Created',
         data: room
@@ -57,7 +57,7 @@ export class ChatGateway {
       return response;
     }
     else {
-      response =  {
+      response = {
         status: 'fail',
         message: 'Could not create Room',
         data: null
