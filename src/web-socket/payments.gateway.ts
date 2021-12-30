@@ -21,7 +21,7 @@ export class PaymentsGateway {
 
   @SubscribeMessage('newPayment')
   async alertNewPayment(@MessageBody() message: any, payment: ReceivePaymentDTO) {
-    console.log(payment);
+    console.table(payment);
     
     let emitMessage =  this.server.emit(message, payment)
       if (emitMessage) console.log('emitted message')
