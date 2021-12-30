@@ -14,7 +14,8 @@ import { PaymentsModule } from './payments/payments.module';
   imports: [
     ChatModule,
     MongooseModule.forRoot(
-      'mongodb://localhost/fenix-sms-chat-server'
+      // 'mongodb://localhost/fenix-sms-chat-server'
+      'mongodb+srv://stella-arts-store:EESJechmyx9QsiJ@cluster0.u6ozo.mongodb.net/Cluster0?retryWrites=true&w=majority'
       ),
     WebSocketModule,
     RoomModule,
