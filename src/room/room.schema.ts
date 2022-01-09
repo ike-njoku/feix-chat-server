@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
+import { StudentBioData } from './dto/create-room.dto';
 
 export type RoomDocument = Room & Document;
 
@@ -9,7 +10,7 @@ export class Room {
   timeStamp: number;
 
   @Prop({required: true})
-  participants: string[];
+  participants: StudentBioData[];
 
 }
 

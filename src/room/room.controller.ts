@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { RoomService } from './room.service';
-import { CreateRoomDto } from './dto/create-room.dto';
+import { CreateRoomDto, StudentBioData } from './dto/create-room.dto';
 import { UpdateRoomDto } from './dto/update-room.dto';
 
 @Controller('room')
@@ -14,8 +14,8 @@ export class RoomController {
   }
 
   @Post('myActiveRooms') 
-  getActiveRooms(@Body()userName: string) {
-    return this.roomService.getMyActiveRooms(userName)
+  getActiveRooms(@Body()bioData: StudentBioData) {
+    return this.roomService.getMyActiveRooms(bioData)
   }
 
   @Get()

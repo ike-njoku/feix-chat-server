@@ -1,4 +1,47 @@
+export interface StudentBioData {
+  CreateDate: string,
+  DOB: string,
+  DepartmentId: string,
+  DepartmentName: string,
+  Disability: boolean,
+  Email: string,
+  EntryClassId: string,
+  EntrySession: string,
+  EntrySessionId: string,
+  ExtraCurricular: string,
+  FacultyId: string,
+  FacultyName: string,
+  FirstName: string,
+  Id: string,
+  IsMilitary: boolean,
+  JambNo: string,
+  LastName: string,
+  MaritalStatus: string,
+  MatricNumber: string,
+  MiddleName: string,
+  ModeOfEntryDescription: string,
+  ModeOfEntryId: string,
+  NatureOfDisability: string,
+  OriginLGAId: string,
+  Phone: string,
+  PlaceOfBirth: string,
+  ProgramId: string,
+  Programe: string,
+  ReligionDescription: string,
+  ReligionId: string,
+  Sex: string,
+  StateOfOriginId: string,
+  StatusId: string,
+  StudentStatusDescription: string,
+  Submit: boolean,
+  TenantId: string,
+  UpdateDate: string,
+  UpdatedBy: string,
+  UserName: string,
+  url: string
+}
+
 export class CreateRoomDto {
   createdBy: string;
-  participants?: string[]; 
+  participants?: StudentBioData[];
 }

@@ -3,7 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { ResponseDTO } from 'src/response.dto';
 import { ChatGateway } from 'src/web-socket/chat.gateway';
-import { CreateRoomDto } from './dto/create-room.dto';
+import { CreateRoomDto, StudentBioData } from './dto/create-room.dto';
 import { UpdateRoomDto } from './dto/update-room.dto';
 import { Room, RoomDocument } from './room.schema';
 
@@ -32,14 +32,14 @@ export class RoomService {
 
   }
 
-  async getMyActiveRooms(userName: any) {
+  async getMyActiveRooms(biodata: StudentBioData) {
     let activeRooms = await this.roomModel.find({});
     if (activeRooms) {
       let _rooms: RoomDocument[] = [];
       activeRooms.forEach((room) => {
-        if (room.participants.includes(userName.userName)) {
+        if (room.participants.indexOf(biodata)) {
+          console.log('found');
           _rooms.push(room);
-          console.log(room);
         }
       })
       
